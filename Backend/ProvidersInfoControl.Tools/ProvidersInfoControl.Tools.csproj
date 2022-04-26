@@ -7,12 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ProvidersInfoControl.Dal\ProvidersInfoControl.Dal.csproj" />
-      <ProjectReference Include="..\ProvidersInfoControl.Domain\ProvidersInfoControl.Domain.csproj" />
+      <PackageReference Include="AutoMapper" Version="11.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper" Version="11.0.1" />
+      <ProjectReference Include="..\ProvidersInfoControl.Domain\ProvidersInfoControl.Domain.csproj" />
     </ItemGroup>
 
 </Project>

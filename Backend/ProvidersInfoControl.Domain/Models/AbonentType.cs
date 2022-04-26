@@ -1,7 +1,6 @@
 namespace ProvidersInfoControl.Domain.Models;
 
-public class AbonentType : IModel
+public class AbonentType : BaseModel
 {
-    public int Id { get; set; }
     public string Name { get; set; }
 }

@@ -1,6 +1,6 @@
 namespace ProvidersInfoControl.Domain.Models;
 
-public interface IModel
+public class BaseModel
 {
     public int Id { get; set; }
 }

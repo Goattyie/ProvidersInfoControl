@@ -1,7 +1,6 @@
 namespace ProvidersInfoControl.Domain.Models;
 
-public class OwnType : IModel
+public class OwnType : BaseModel
 {
-    public int Id { get; set; }
     public string Name { get; set; }
 }
