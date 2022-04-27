@@ -11,11 +11,13 @@ public class PicDbContext : DbContext
     
     public DbSet<OwnType> OwnTypes { get; set; }
     public DbSet<AbonentType> AbonentTypes { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new OwnTypeConfiguration());
         modelBuilder.ApplyConfiguration(new AbonentTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
         
         base.OnModelCreating(modelBuilder);
     }

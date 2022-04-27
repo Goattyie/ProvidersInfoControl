@@ -1,4 +1,4 @@
-namespace ProvidersInfoControl.Domain.Dtos.UpdateDto;
+namespace ProvidersInfoControl.Domain.Dtos.Update;
 
 public class OwnTypeUpdateDto : IUpdateDto
 {

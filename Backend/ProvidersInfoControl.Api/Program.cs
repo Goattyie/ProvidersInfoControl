@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProvidersInfoControl.Bll;
-using ProvidersInfoControl.Bll.Interfaces;
+using ProvidersInfoControl.Bll.Services;
+using ProvidersInfoControl.Bll.Services.Interfaces;
+using ProvidersInfoControl.Bll.Utils;
 using ProvidersInfoControl.Dal;
 using ProvidersInfoControl.Dal.Interfaces;
 using ProvidersInfoControl.Database;
@@ -24,12 +28,14 @@ builder.Services.AddDbContext<PicDbContext>(opt => opt.UseNpgsql(builder.Configu
 #region Repositories
 
 builder.Services.AddScoped<IOwnTypeRepository, OwnTypeRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 #endregion
 
 #region Services
 
 builder.Services.AddScoped<IOwnTypeService, OwnTypeService>();
+builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
 #endregion
 
@@ -74,6 +80,24 @@ builder.Services.AddSwaggerGen(c =>
 #region Api
 
 builder.Services.AddControllers();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidIssuer = AuthOptions.ISSUER,
+
+            ValidateAudience = true,
+            ValidAudience = AuthOptions.AUDIENCE,
+
+            ValidateLifetime = true,
+
+            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            ValidateIssuerSigningKey = true
+        };
+    });
 
 #endregion
 
@@ -87,5 +111,8 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("v1/swagger.json", "My API V1");
 });
 app.MapControllers();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

@@ -1,4 +1,4 @@
-namespace ProvidersInfoControl.Domain.Dtos.GetDto;
+namespace ProvidersInfoControl.Domain.Dtos.Get;
 
 public class OwnTypeGetDto : IGetDto
 {

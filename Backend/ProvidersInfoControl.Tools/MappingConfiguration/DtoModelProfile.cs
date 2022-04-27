@@ -1,7 +1,7 @@
 using AutoMapper;
-using ProvidersInfoControl.Domain.Dtos.CreateDto;
-using ProvidersInfoControl.Domain.Dtos.GetDto;
-using ProvidersInfoControl.Domain.Dtos.UpdateDto;
+using ProvidersInfoControl.Domain.Dtos.Create;
+using ProvidersInfoControl.Domain.Dtos.Get;
+using ProvidersInfoControl.Domain.Dtos.Update;
 using ProvidersInfoControl.Domain.Models;
 
 namespace ProvidersInfoControl.Tools.MappingConfiguration;

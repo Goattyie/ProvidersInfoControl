@@ -26,7 +26,8 @@ public class DbInitializer
 
         dbContext.Database.EnsureDeleted();
         dbContext.Database.Migrate();
-        
+
+        UserCreator.Init(dbContext);
         OwnTypeCreator.Init(dbContext);
         AbonentTypeCreator.Init(dbContext);
     }

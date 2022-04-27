@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using ProvidersInfoControl.Bll.Interfaces;
+using ProvidersInfoControl.Bll.Services.Interfaces;
 using ProvidersInfoControl.Dal.Interfaces;
-using ProvidersInfoControl.Domain.Dtos.CreateDto;
-using ProvidersInfoControl.Domain.Dtos.GetDto;
-using ProvidersInfoControl.Domain.Dtos.UpdateDto;
+using ProvidersInfoControl.Domain.Dtos.Create;
+using ProvidersInfoControl.Domain.Dtos.Get;
+using ProvidersInfoControl.Domain.Dtos.Update;
 using ProvidersInfoControl.Domain.Models;
 
-namespace ProvidersInfoControl.Bll;
+namespace ProvidersInfoControl.Bll.Services;
 
 public abstract class AbstractService<TCreateDto, TUpdateDto, TGetDto, TModel> : IService<TCreateDto, TUpdateDto, TGetDto>
     where TCreateDto : ICreateDto

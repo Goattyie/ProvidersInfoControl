@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using ProvidersInfoControl.Bll.Interfaces;
-using ProvidersInfoControl.Domain.Dtos.CreateDto;
-using ProvidersInfoControl.Domain.Dtos.GetDto;
-using ProvidersInfoControl.Domain.Dtos.UpdateDto;
+using ProvidersInfoControl.Api.Core.Attributes;
+using ProvidersInfoControl.Bll.Services.Interfaces;
+using ProvidersInfoControl.Domain.Dtos.Create;
+using ProvidersInfoControl.Domain.Dtos.Get;
+using ProvidersInfoControl.Domain.Dtos.Update;
+using ProvidersInfoControl.Domain.Enums;
 
 namespace ProvidersInfoControl.Api.Controllers;
 
@@ -19,6 +21,7 @@ public abstract class AbstractController<TCreateDto, TUpdateDto, TGetDto> : Cont
     }
     
     [HttpGet]
+    [RoleAttribute(UserRole.Admin, UserRole.Operator)]
     public virtual async Task<IActionResult> Get()
     {
         var locationDtoList = await Service.GetAsync();

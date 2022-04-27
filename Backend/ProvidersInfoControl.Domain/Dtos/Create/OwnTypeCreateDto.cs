@@ -1,4 +1,4 @@
-namespace ProvidersInfoControl.Domain.Dtos.CreateDto;
+namespace ProvidersInfoControl.Domain.Dtos.Create;
 
 public class OwnTypeCreateDto : ICreateDto
 {
