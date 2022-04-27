@@ -17,5 +17,13 @@ public class DtoModelProfile : Profile
         CreateMap<OwnType, OwnTypeGetDto>();
 
         #endregion
+
+        #region AbonentType
+
+        CreateMap<AbonentTypeCreateDto, AbonentType>();
+        CreateMap<AbonentTypeUpdateDto, AbonentType>();
+        CreateMap<AbonentType, AbonentTypeGetDto>();
+
+        #endregion
     }
 }

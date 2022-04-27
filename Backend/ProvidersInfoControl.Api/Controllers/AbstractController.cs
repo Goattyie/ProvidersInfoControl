@@ -53,7 +53,7 @@ public abstract class AbstractController<TCreateDto, TUpdateDto, TGetDto> : Cont
         return Ok(updatedDto.First());
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public virtual async Task<IActionResult> Delete(int id)
     {
         await Service.RemoveAsync(id);
