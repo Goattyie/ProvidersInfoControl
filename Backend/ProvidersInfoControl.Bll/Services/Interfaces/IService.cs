@@ -1,6 +1,7 @@
 using ProvidersInfoControl.Domain.Dtos.Create;
 using ProvidersInfoControl.Domain.Dtos.Get;
 using ProvidersInfoControl.Domain.Dtos.Update;
+using ProvidersInfoControl.Tools.Dtos;
 
 namespace ProvidersInfoControl.Bll.Services.Interfaces;
 
@@ -9,9 +10,9 @@ public interface IService<TCreateDto, TUpdateDto, TGetDto>
     where TUpdateDto : IUpdateDto
     where TGetDto : IGetDto
 {
-    public Task<IEnumerable<TGetDto>> GetAsync();
-    public Task<TGetDto> GetByIdAsync(int id);
-    public Task<IEnumerable<TGetDto>> CreateAsync(params TCreateDto[] dtos);
-    public Task<IEnumerable<TGetDto>> UpdateAsync(params TUpdateDto[] dtos);
-    public Task RemoveAsync(params int[] ids);
+    public Task<IOperationResult> GetAsync();
+    public Task<IOperationResult> GetByIdAsync(int id);
+    public Task<IOperationResult> CreateAsync(params TCreateDto[] dtos);
+    public Task<IOperationResult> UpdateAsync(params TUpdateDto[] dtos);
+    public Task<IOperationResult> RemoveAsync(params int[] ids);
 }

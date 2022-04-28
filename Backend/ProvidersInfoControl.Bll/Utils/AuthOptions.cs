@@ -7,7 +7,7 @@ public class AuthOptions
 {
     public const string ISSUER = "PicApi";
     public const string AUDIENCE = "PicClient";
-    public const int LIFETIME = 1;
+    public const int LIFETIME = 3600;
     const string KEY = "PicSuperSecretKey123321OSGOATTYIE";
     public static SymmetricSecurityKey GetSymmetricSecurityKey()
     {

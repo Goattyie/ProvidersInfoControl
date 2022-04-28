@@ -5,10 +5,11 @@ using ProvidersInfoControl.Domain.Dtos.Create;
 using ProvidersInfoControl.Domain.Dtos.Get;
 using ProvidersInfoControl.Domain.Dtos.Update;
 using ProvidersInfoControl.Domain.Enums;
+using ProvidersInfoControl.Tools.Dtos;
 
 namespace ProvidersInfoControl.Api.Controllers;
 
-public abstract class AbstractController<TCreateDto, TUpdateDto, TGetDto> : ControllerBase
+public abstract class AbstractController<TCreateDto, TUpdateDto, TGetDto> : BaseController
     where TCreateDto : ICreateDto
     where TUpdateDto : IUpdateDto
     where TGetDto : IGetDto
@@ -19,44 +20,20 @@ public abstract class AbstractController<TCreateDto, TUpdateDto, TGetDto> : Cont
     {
         Service = service;
     }
-    
+
     [HttpGet]
     [RoleAttribute(UserRole.Admin, UserRole.Operator)]
-    public virtual async Task<IActionResult> Get()
-    {
-        var locationDtoList = await Service.GetAsync();
-
-        return Ok(locationDtoList);
-    }
+    public virtual async Task<IActionResult> Get() => GetResponse(await Service.GetAsync());
 
     [HttpGet("{id}")]
-    public virtual async Task<IActionResult> GetById(int id)
-    {
-        var dto = await Service.GetByIdAsync(id);
-
-        return Ok(dto);
-    }
+    public virtual async Task<IActionResult> GetById(int id) => GetResponse(await Service.GetByIdAsync(id));
     
     [HttpPost]
-    public virtual async Task<IActionResult> Post([FromBody] TCreateDto dto)
-    {
-        var createdDto = await Service.CreateAsync(dto);
-
-        return Ok(createdDto.First());
-    }
+    public virtual async Task<IActionResult> Post([FromBody] TCreateDto dto) => GetResponse(await Service.CreateAsync(dto));
 
     [HttpPut]
-    public virtual async Task<IActionResult> Put([FromBody] TUpdateDto dto)
-    {
-        var updatedDto = await Service.UpdateAsync(dto);
-
-        return Ok(updatedDto.First());
-    }
+    public virtual async Task<IActionResult> Put([FromBody] TUpdateDto dto) => GetResponse(await Service.UpdateAsync(dto));
 
     [HttpDelete("{id}")]
-    public virtual async Task<IActionResult> Delete(int id)
-    {
-        await Service.RemoveAsync(id);
-        return Ok();
-    }
+    public virtual async Task<IActionResult> Delete(int id) => GetResponse(await Service.RemoveAsync(id));
 }

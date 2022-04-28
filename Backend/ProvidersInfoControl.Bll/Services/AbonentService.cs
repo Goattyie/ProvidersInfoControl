@@ -6,6 +6,7 @@ using ProvidersInfoControl.Domain.Dtos.Create;
 using ProvidersInfoControl.Domain.Dtos.Get;
 using ProvidersInfoControl.Domain.Dtos.Update;
 using ProvidersInfoControl.Domain.Models;
+using ProvidersInfoControl.Tools.Dtos;
 
 namespace ProvidersInfoControl.Bll.Services;
 
@@ -19,7 +20,7 @@ public class AbonentService : AbstractService<AbonentCreateDto, AbonentUpdateDto
         _abonentTypeRepository = abonentTypeRepository;
     }
 
-    public override async Task<IEnumerable<AbonentGetDto>> CreateAsync(params AbonentCreateDto[] dtos)
+    public override async Task<IOperationResult> CreateAsync(params AbonentCreateDto[] dtos)
     {
         var models = Mapper.Map<Abonent[]>(dtos);
 
@@ -31,17 +32,17 @@ public class AbonentService : AbstractService<AbonentCreateDto, AbonentUpdateDto
             model.AbonentType = abonentTypes.FirstOrDefault(x => x.Id == model.AbonentTypeId);
 
             if (model.AbonentType == null)
-            {
-                throw new ArgumentException(string.Format(Errors.WrongAbonentTypeId, model.AbonentTypeId));
-            }
+                return OperationResult.Bad(string.Format(Errors.WrongAbonentTypeId, model.AbonentTypeId));
         }
 
         await Repository.Create(models);
 
-        return Mapper.Map<IEnumerable<AbonentGetDto>>(models);
+        var getDtos = Mapper.Map<AbonentGetDto[]>(models);
+        
+        return OperationResult.Ok(getDtos);
     }
 
-    public override async Task<IEnumerable<AbonentGetDto>> UpdateAsync(params AbonentUpdateDto[] dtos)
+    public override async Task<IOperationResult> UpdateAsync(params AbonentUpdateDto[] dtos)
     {
         var models = Mapper.Map<Abonent[]>(dtos);
 
@@ -53,13 +54,13 @@ public class AbonentService : AbstractService<AbonentCreateDto, AbonentUpdateDto
             model.AbonentType = abonentTypes.FirstOrDefault(x => x.Id == model.AbonentTypeId);
 
             if (model.AbonentType == null)
-            {
-                throw new ArgumentException(string.Format(Errors.WrongAbonentTypeId, model.AbonentTypeId));
-            }
+                return OperationResult.Bad(string.Format(Errors.WrongAbonentTypeId, model.AbonentTypeId));
         }
 
         await Repository.Update(models);
 
-        return Mapper.Map<IEnumerable<AbonentGetDto>>(models);
+        var getDtos = Mapper.Map<AbonentGetDto[]>(models);
+        
+        return OperationResult.Ok(getDtos);
     }
 }

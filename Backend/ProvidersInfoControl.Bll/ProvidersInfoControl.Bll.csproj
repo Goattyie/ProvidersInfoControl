@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\ProvidersInfoControl.Dal\ProvidersInfoControl.Dal.csproj" />
       <ProjectReference Include="..\ProvidersInfoControl.Domain\ProvidersInfoControl.Domain.csproj" />
+      <ProjectReference Include="..\ProvidersInfoControl.Tools\ProvidersInfoControl.Tools.csproj" />
     </ItemGroup>
 
     <ItemGroup>

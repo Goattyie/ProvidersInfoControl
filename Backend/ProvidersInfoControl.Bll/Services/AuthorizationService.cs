@@ -9,6 +9,7 @@ using ProvidersInfoControl.Bll.Utils;
 using ProvidersInfoControl.Dal.Interfaces;
 using ProvidersInfoControl.Domain.Dtos.Create;
 using ProvidersInfoControl.Domain.Dtos.Get;
+using ProvidersInfoControl.Tools.Dtos;
 
 namespace ProvidersInfoControl.Bll.Services;
 
@@ -21,12 +22,13 @@ public class AuthorizationService : IAuthorizationService
         _repository = repository;
     }
 
-    public Task<AuthGetDto> SignIn(AuthCreateDto dto)
+    public Task<IOperationResult> SignIn(AuthCreateDto dto)
     {
         var user = _repository.GetQuery().FirstOrDefault(x => x.Login == dto.Login);
 
         if (user is null)
-            throw new NullReferenceException(Errors.WrongLogin);
+            return Task.FromResult(OperationResult.Bad(Errors.WrongLogin));
+
 
         var hashBytes = Convert.FromBase64String(user.Password);
         var salt = new byte[16];
@@ -39,7 +41,7 @@ public class AuthorizationService : IAuthorizationService
         for (int i = 0; i < 20; i++)
         {
             if (hashBytes[i + 16] != hash[i])
-                throw new ValidationException(Errors.WrongPassword);
+                return Task.FromResult(OperationResult.Bad(Errors.WrongPassword));
         }
 
         var claims = new List<Claim>()
@@ -56,11 +58,13 @@ public class AuthorizationService : IAuthorizationService
             expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
         var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-        return Task.FromResult(new AuthGetDto()
+        
+        var getDto = new AuthGetDto()
         {
             Login = user.Login,
             Token = encodedJwt
-        });
+        };
+        
+        return Task.FromResult(OperationResult.Ok(getDto));
     }
 }
