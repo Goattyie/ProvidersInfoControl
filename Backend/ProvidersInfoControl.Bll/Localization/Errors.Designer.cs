@@ -61,6 +61,15 @@ namespace ProvidersInfoControl.Bll.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тип абонента с ID = {0} не найден..
+        /// </summary>
+        internal static string WrongAbonentTypeId {
+            get {
+                return ResourceManager.GetString("WrongAbonentTypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Логин указан неверно.
         /// </summary>
         internal static string WrongLogin {

@@ -30,6 +30,7 @@ builder.Services.AddDbContext<PicDbContext>(opt => opt.UseNpgsql(builder.Configu
 builder.Services.AddScoped<IOwnTypeRepository, OwnTypeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAbonentTypeRepository, AbonentTypeRepository>();
+builder.Services.AddScoped<IAbonentRepository, AbonentRepository>();
 
 #endregion
 
@@ -38,6 +39,7 @@ builder.Services.AddScoped<IAbonentTypeRepository, AbonentTypeRepository>();
 builder.Services.AddScoped<IOwnTypeService, OwnTypeService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 builder.Services.AddScoped<IAbonentTypeService, AbonentTypeService>();
+builder.Services.AddScoped<IAbonentService, AbonentService>();
 
 #endregion
 
