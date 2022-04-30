@@ -61,11 +61,29 @@ namespace ProvidersInfoControl.Bll.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Абонент с ID = {0} не найден.
+        /// </summary>
+        internal static string WrongAbonentId {
+            get {
+                return ResourceManager.GetString("WrongAbonentId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тип абонента с ID = {0} не найден.
         /// </summary>
         internal static string WrongAbonentTypeId {
             get {
                 return ResourceManager.GetString("WrongAbonentTypeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фирма с ID = {0} не найдена.
+        /// </summary>
+        internal static string WrongFirmId {
+            get {
+                return ResourceManager.GetString("WrongFirmId", resourceCulture);
             }
         }
         

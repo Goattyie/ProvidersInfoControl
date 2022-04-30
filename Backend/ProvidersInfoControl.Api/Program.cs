@@ -33,6 +33,7 @@ builder.Services.AddScoped<IAbonentTypeRepository, AbonentTypeRepository>();
 builder.Services.AddScoped<IAbonentRepository, AbonentRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IFirmRepository, FirmRepository>();
+builder.Services.AddScoped<IContractRepository, ContractRepository>();
 
 #endregion
 
@@ -44,6 +45,7 @@ builder.Services.AddScoped<IAbonentTypeService, AbonentTypeService>();
 builder.Services.AddScoped<IAbonentService, AbonentService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IFirmService, FirmService>();
+builder.Services.AddScoped<IContractService, ContractService>();
 
 #endregion
 

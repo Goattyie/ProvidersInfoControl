@@ -16,6 +16,7 @@ public class PicDbContext : DbContext
     public DbSet<Abonent> Abonents { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Firm> Firms { get; set; }
+    public DbSet<Contract> Contracts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,7 @@ public class PicDbContext : DbContext
         modelBuilder.ApplyConfiguration(new AbonentConfiguration());
         modelBuilder.ApplyConfiguration(new ServiceConfiguration());
         modelBuilder.ApplyConfiguration(new FirmConfiguration());
+        modelBuilder.ApplyConfiguration(new ContractConfiguration());
         
         base.OnModelCreating(modelBuilder);
     }

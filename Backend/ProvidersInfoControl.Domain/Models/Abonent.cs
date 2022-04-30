@@ -8,4 +8,5 @@ public class Abonent : BaseModel
     public int AbonentTypeId { get; set; }
     public AbonentType AbonentType { get; set; }
     public virtual ICollection<Service> Services { get; set; }
+    public virtual ICollection<Contract> Contracts { get; set; }
 }

@@ -9,4 +9,5 @@ public class Firm : BaseModel
     public int OwnTypeId { get; set; }
     public OwnType OwnType { get; set; }
     public virtual ICollection<Service> Services { get; set; }
+    public virtual ICollection<Contract> Contracts { get; set; }
 }

@@ -30,4 +30,10 @@
     <data name="WrongOwnTypeId" xml:space="preserve">
         <value>Тип собственности с ID = {0} не найден</value>
     </data>
+    <data name="WrongFirmId" xml:space="preserve">
+        <value>Фирма с ID = {0} не найдена</value>
+    </data>
+    <data name="WrongAbonentId" xml:space="preserve">
+        <value>Абонент с ID = {0} не найден</value>
+    </data>
 </root>

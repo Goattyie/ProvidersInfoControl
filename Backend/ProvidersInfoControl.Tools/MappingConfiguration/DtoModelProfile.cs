@@ -53,5 +53,16 @@ public class DtoModelProfile : Profile
         CreateMap<Firm, FirmGetDto>();
 
         #endregion
+
+        #region Contract
+
+        CreateMap<ContractCreateDto, Contract>().ForMember(x => x.ConnectionDate,
+            opt => opt.MapFrom(d => DateOnly.Parse(d.ConnectionDate)));
+        CreateMap<ContractUpdateDto, Contract>().ForMember(x => x.ConnectionDate,
+            opt => opt.MapFrom(d => DateOnly.Parse(d.ConnectionDate)));
+        CreateMap<Contract, ContractGetDto>().ForMember(x => x.ConnectionDate, 
+            opt => opt.MapFrom(s => s.ConnectionDate.ToString()));
+
+        #endregion
     }
 }
