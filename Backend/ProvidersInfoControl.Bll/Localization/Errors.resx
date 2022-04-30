@@ -25,6 +25,9 @@
         <value>Пароль указан неверно</value>
     </data>
     <data name="WrongAbonentTypeId" xml:space="preserve">
-        <value>Тип абонента с ID = {0} не найден.</value>
+        <value>Тип абонента с ID = {0} не найден</value>
+    </data>
+    <data name="WrongOwnTypeId" xml:space="preserve">
+        <value>Тип собственности с ID = {0} не найден</value>
     </data>
 </root>

@@ -31,6 +31,8 @@ builder.Services.AddScoped<IOwnTypeRepository, OwnTypeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAbonentTypeRepository, AbonentTypeRepository>();
 builder.Services.AddScoped<IAbonentRepository, AbonentRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IFirmRepository, FirmRepository>();
 
 #endregion
 
@@ -40,6 +42,8 @@ builder.Services.AddScoped<IOwnTypeService, OwnTypeService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 builder.Services.AddScoped<IAbonentTypeService, AbonentTypeService>();
 builder.Services.AddScoped<IAbonentService, AbonentService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IFirmService, FirmService>();
 
 #endregion
 

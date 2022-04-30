@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProvidersInfoControl.Database;
@@ -11,9 +12,11 @@ using ProvidersInfoControl.Database;
 namespace ProvidersInfoControl.Database.Migrations
 {
     [DbContext(typeof(PicDbContext))]
-    partial class PicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220428225628_AddServices")]
+    partial class AddServices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,39 +77,6 @@ namespace ProvidersInfoControl.Database.Migrations
                     b.ToTable("AbonentTypes");
                 });
 
-            modelBuilder.Entity("ProvidersInfoControl.Domain.Models.Firm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)");
-
-                    b.Property<int>("OwnTypeId")
-                        .HasColumnType("integer");
-
-                    b.Property<short>("StartWorkingYear")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Telephone")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnTypeId");
-
-                    b.ToTable("Firms");
-                });
-
             modelBuilder.Entity("ProvidersInfoControl.Domain.Models.OwnType", b =>
                 {
                     b.Property<int>("Id")
@@ -135,9 +105,6 @@ namespace ProvidersInfoControl.Database.Migrations
                     b.Property<int>("AbonentId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("FirmId")
-                        .HasColumnType("integer");
-
                     b.Property<DateOnly>("RecievingDate")
                         .HasColumnType("date");
 
@@ -147,8 +114,6 @@ namespace ProvidersInfoControl.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AbonentId");
-
-                    b.HasIndex("FirmId");
 
                     b.ToTable("Services");
                 });
@@ -193,17 +158,6 @@ namespace ProvidersInfoControl.Database.Migrations
                     b.Navigation("AbonentType");
                 });
 
-            modelBuilder.Entity("ProvidersInfoControl.Domain.Models.Firm", b =>
-                {
-                    b.HasOne("ProvidersInfoControl.Domain.Models.OwnType", "OwnType")
-                        .WithMany("Firms")
-                        .HasForeignKey("OwnTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OwnType");
-                });
-
             modelBuilder.Entity("ProvidersInfoControl.Domain.Models.Service", b =>
                 {
                     b.HasOne("ProvidersInfoControl.Domain.Models.Abonent", "Abonent")
@@ -212,15 +166,7 @@ namespace ProvidersInfoControl.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProvidersInfoControl.Domain.Models.Firm", "Firm")
-                        .WithMany("Services")
-                        .HasForeignKey("FirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Abonent");
-
-                    b.Navigation("Firm");
                 });
 
             modelBuilder.Entity("ProvidersInfoControl.Domain.Models.Abonent", b =>
@@ -231,16 +177,6 @@ namespace ProvidersInfoControl.Database.Migrations
             modelBuilder.Entity("ProvidersInfoControl.Domain.Models.AbonentType", b =>
                 {
                     b.Navigation("Abonents");
-                });
-
-            modelBuilder.Entity("ProvidersInfoControl.Domain.Models.Firm", b =>
-                {
-                    b.Navigation("Services");
-                });
-
-            modelBuilder.Entity("ProvidersInfoControl.Domain.Models.OwnType", b =>
-                {
-                    b.Navigation("Firms");
                 });
 #pragma warning restore 612, 618
         }

@@ -33,5 +33,25 @@ public class DtoModelProfile : Profile
         CreateMap<Abonent, AbonentGetDto>();
 
         #endregion
+
+        #region Service
+
+        CreateMap<ServiceCreateDto, Service>().ForMember(x => x.RecievingDate,
+            opt => opt.MapFrom(d => DateOnly.Parse(d.RecievingDate)));
+        CreateMap<ServiceUpdateDto, Service>().ForMember(x => x.RecievingDate,
+            opt => opt.MapFrom(d => DateOnly.Parse(d.RecievingDate)));
+        CreateMap<Service, ServiceGetDto>().ForMember(x => x.RecievingDate, 
+            opt => 
+                opt.MapFrom(s => s.RecievingDate.ToString()));
+
+        #endregion
+
+        #region Firm
+
+        CreateMap<FirmCreateDto, Firm>();
+        CreateMap<FirmUpdateDto, Firm>();
+        CreateMap<Firm, FirmGetDto>();
+
+        #endregion
     }
 }

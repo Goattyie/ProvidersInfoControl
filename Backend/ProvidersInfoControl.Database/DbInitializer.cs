@@ -31,5 +31,7 @@ public class DbInitializer
         OwnTypeCreator.Init(dbContext);
         AbonentTypeCreator.Init(dbContext);
         AbonentCreator.Init(dbContext);
+        FirmCreator.Init(dbContext);
+        ServiceCreator.Init(dbContext);
     }
 }

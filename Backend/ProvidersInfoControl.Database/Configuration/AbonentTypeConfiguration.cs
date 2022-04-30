@@ -10,5 +10,8 @@ public class AbonentTypeConfiguration: IEntityTypeConfiguration<AbonentType>
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Name).HasMaxLength(20);
+        builder.HasMany(x => x.Abonents)
+            .WithOne(a => a.AbonentType)
+            .HasForeignKey(x => x.AbonentTypeId);
     }
 }

@@ -13,5 +13,10 @@ public class AbonentConfiguration : IEntityTypeConfiguration<Abonent>
         builder.HasIndex(x => x.Email).IsUnique();
         builder.HasIndex(x => x.Address).IsUnique();
         builder.Property(x => x.Address).IsRequired();
+        builder.HasMany(x => x.Services)
+            .WithOne(a => a.Abonent);
+        builder.HasOne(x => x.AbonentType)
+            .WithMany(a => a.Abonents)
+            .HasForeignKey(k => k.AbonentTypeId);
     }
 }
