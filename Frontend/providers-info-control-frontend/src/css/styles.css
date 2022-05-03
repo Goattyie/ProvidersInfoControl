@@ -1,0 +1,13 @@
+.auth-page{
+    display: flex;
+    justify-content: center;
+}
+
+.auth-page-form{
+    position: absolute;               
+    top: 50%;                         
+    transform: translate(0, -50%);
+    padding: 60px 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}

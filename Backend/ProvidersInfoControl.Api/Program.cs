@@ -108,7 +108,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true
         };
     });
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyOrigin()
+        .AllowAnyMethod();
+    });
+});
 #endregion
 
 var app = builder.Build();
@@ -121,7 +129,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("v1/swagger.json", "My API V1");
 });
 app.MapControllers();
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
